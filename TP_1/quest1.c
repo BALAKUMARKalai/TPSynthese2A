@@ -7,6 +7,5 @@
 int main() {
 	const char *mess ="$ ./enseash Bienvenue dans le Shell ENSEA. Pour quitter, tapez 'exit'.enseash %\n";
 	write(STDOUT_FILENO, mess, sizeof(mess));
-	
     exit(EXIT_SUCCESS);
 }

@@ -11,8 +11,13 @@ int main() {
     
     write(STDOUT_FILENO, mess, strlen(mess));//Pour écrire notre message 
 	while(1){
+<<<<<<< HEAD
 		write(STDOUT_FILENO, ENSEASH, strlen(ENSEASH));//pour avoir notre prompt
         read(STDIN_FILENO, commande, 256);//pour attendre une commande 
+=======
+		write(STDOUT_FILENO, mess, strlen(ENSEASH));
+        	ssize_t n = read(STDIN_FILENO, commande, 256);
+>>>>>>> 32f5d9ded14440ad6951651b5a91b8826a2d2533
     
 	}
     exit(EXIT_SUCCESS);

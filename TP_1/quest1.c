@@ -12,7 +12,7 @@ int main() {
     write(STDOUT_FILENO, mess, strlen(mess));
 	while(1){
 		write(STDOUT_FILENO, mess, strlen(ENSEASH));
-        ssize_t n = read(STDIN_FILENO, commande, 256);
+        	ssize_t n = read(STDIN_FILENO, commande, 256);
     
 	}
 	write(STDOUT_FILENO, mess, sizeof(mess));

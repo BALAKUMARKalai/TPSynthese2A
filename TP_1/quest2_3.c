@@ -48,7 +48,7 @@ int main(){
                 wait(&status);
             }
         }
-        else if (strcmp(commande, "exit") == 0)
+        else if (strcmp(commande, "exit") == 0)//QUESTION 3
 	 {
             write(STDOUT_FILENO, EXIT_MSG, strlen(EXIT_MSG));
             exit(EXIT_SUCCESS);

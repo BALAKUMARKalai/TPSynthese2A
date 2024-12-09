@@ -9,12 +9,11 @@ int main() {
 	
     char commande[256];
     
-    write(STDOUT_FILENO, mess, strlen(mess));
+    write(STDOUT_FILENO, mess, strlen(mess));//Pour écrire notre message 
 	while(1){
-		write(STDOUT_FILENO, mess, strlen(ENSEASH));
-        read(STDIN_FILENO, commande, 256);
+		write(STDOUT_FILENO, ENSEASH, strlen(ENSEASH));//pour avoir notre prompt
+        read(STDIN_FILENO, commande, 256);//pour attendre une commande 
     
 	}
-	write(STDOUT_FILENO, mess, sizeof(mess));
     exit(EXIT_SUCCESS);
 }

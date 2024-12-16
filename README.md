@@ -88,21 +88,21 @@ Included Files
 <ins>**Core Structure
 
    1. Reading Commands:
-          a. Uses read to capture user input.
-          b. Removes the newline character (using commande[n-1] = '\0';).
-   2. Parsing Arguments:
-          a. Splits the command using strtok to extract arguments.
-   3. Execution:
-          a. Creates a child process with fork.
-          b. Executes the command in the child process using execvp or execlp.
-          c. Handles errors if the command is not found.
-   4. Measuring Execution Time (Q5):
-          a. Measures time before and after execution using clock_gettime.
-          b. Calculates and displays the duration.
-   5. Exit Status:
-          a. Uses wait to retrieve the child process status.
-          b. Displays either the return code or the signal that interrupted the command.
-      6. Receiving our own IP address
+          a. Uses read to capture user input.  
+          b. Removes the newline character (using commande[n-1] = '\0';).  
+   2. Parsing Arguments:  
+          a. Splits the command using strtok to extract arguments.  
+   3. Execution:  
+          a. Creates a child process with fork.  
+          b. Executes the command in the child process using execvp or execlp.  
+          c. Handles errors if the command is not found.  
+   4. Measuring Execution Time (Q5):  
+          a. Measures time before and after execution using clock_gettime.  
+          b. Calculates and displays the duration.  
+   5. Exit Status:  
+          a. Uses wait to retrieve the child process status.  
+          b. Displays either the return code or the signal that interrupted the command.  
+      6. Receiving our own IP address  
 
 <ins>**Author**</ins>
 This project was developed by BALAKUMAR Kalai and ANEMICHE Nassim.

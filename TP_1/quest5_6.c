@@ -15,30 +15,30 @@ int main() {
     char commande[256];
     char *args[256];
 
-    // Afficher le message de bienvenue
+    //Write the welcoming message
     write(STDOUT_FILENO, mess, strlen(mess));
 
     while (1) {
-        // Afficher le prompt
+        //Write our prompt
         write(STDOUT_FILENO, ENSEASH, strlen(ENSEASH));
 
-        // Lire la commande
+        //Read the buf 
         ssize_t n = read(STDIN_FILENO, commande, sizeof(commande));
         if (n < 0) {
             perror("Erreur de lecture");
             exit(EXIT_FAILURE);
         }
 
-        // Supprimer le saut de ligne de la commande
+        // Remove the newline from the command 
         commande[n - 1] = '\0';
 
-        // Gestion de la commande exit
+        // Exit command (question 3)
         if (strcmp(commande, "exit") == 0) {
             write(STDOUT_FILENO, EXIT_MSG, strlen(EXIT_MSG));
             exit(EXIT_SUCCESS);
         }
 
-        // Découper la commande entrée en arguments
+        // Split the command into arguments(question 6)
         int i = 0;
         args[i] = strtok(commande, " ");
         while (args[i] != NULL) {
@@ -46,44 +46,44 @@ int main() {
             args[i] = strtok(NULL, " ");
         }
 
-        // Mesure du temps avant l'exécution
+        // Get the time before execution
         struct timespec start, end;
         clock_gettime(CLOCK_MONOTONIC, &start);
 
-        // Fils pour exécuter la commande
+        // Son to execute the command
         pid_t pid = fork();
         if (pid == 0) {
-            // fils
+            // son
             if (execvp(args[0], args) == -1) {
                 perror("Erreur Commande non trouvée");
                 exit(EXIT_FAILURE);
             }
         } else if (pid > 0) {
-            //  père
+            //  father
             int status;
             wait(&status);  
 
-            // Mesure du temps après l'exécution
+            // Get the time after the execution
             clock_gettime(CLOCK_MONOTONIC, &end);
 
             
-            // Calcul du temps d'exécution en millisecondes
+            // Calculation of execution time in milliseconds
             long seconds = end.tv_sec - start.tv_sec;
-            long milliseconds = (end.tv_nsec - start.tv_nsec) / 1000000; // Convertir les nanosecondes en millisecondes
+            long milliseconds = (end.tv_nsec - start.tv_nsec) / 1000000; // Change nanoseconds in miliseconds
 
-            // Déterminer le code de retour
+            // To get the return  (question 4)
             char prompt[256];
             if (WIFEXITED(status)) {
-                // Le processus s'est terminé normalement
+                // If the process went with an exit
                 int exit_code = WEXITSTATUS(status);
                 snprintf(prompt, sizeof(prompt), "[time: %ld.%09ld ms][exit:%d] %% ", seconds, milliseconds, exit_code);
             } else if (WIFSIGNALED(status)) {
-                // Le processus a été terminé par un signal
+                // If the process went with a signal
                 int signal = WTERMSIG(status);
                 snprintf(prompt, sizeof(prompt), "[time: %ld.%09ld ms][sig:%d] %% ", seconds, milliseconds, signal);
             } 
 
-            // Afficher le nouveau prompt 
+            //write our new prompt 
             write(STDOUT_FILENO, prompt, strlen(prompt));
         } 
     }

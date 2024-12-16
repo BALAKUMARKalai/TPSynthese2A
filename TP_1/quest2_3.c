@@ -5,61 +5,62 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define NB_CHAT_EXIT 4
 #define HELLO "Bienvenue dans le shell ENSEA .\n"
-#define STR_EXIT "exit"
 #define ENSEASH "enseash % "
 #define EXIT_MSG "Au revoir!\n"
 
-int main(){
+int main() {
     const char *mess = HELLO;
     char commande[256];
-    char outputBuffer[256];
-    int outputSize;
+    char *args[256];
+
+    //Write the welcoming message 
     write(STDOUT_FILENO, mess, strlen(mess));
 
-    while (1)
-    {
-        write(STDOUT_FILENO, ENSEASH, sizeof(ENSEASH));
-        ssize_t n = read(STDIN_FILENO, commande, 256);
-        commande[n - 1] = '\0';
- 	if (n < 0)
-        {
-            perror("Erreur");
+    while (1) {
+        //Write our prompt 
+        write(STDOUT_FILENO, ENSEASH, strlen(ENSEASH));
+
+        //Read the buf 
+        ssize_t n = read(STDIN_FILENO, commande, sizeof(commande));
+        if (n < 0) {
+            perror("Erreur de lecture");
             exit(EXIT_FAILURE);
         }
-        else if (strcmp(commande, "fortune") == 0)
-        {
-            if(0 == fork()){ // Son
-              execlp("/usr/games/fortune","fortune",NULL);//executer le prog fortune
-            }
-            else { // Father
-                int status;
-                wait(&status);
-            }
-        }
-         else if (strcmp(commande, "ls") == 0)
-        {
-            if(0 == fork()){ // Son
-              execlp("/bin/ls","ls",NULL);
-            }
-            else { // Father
-                int status;
-                wait(&status);
-            }
-        }
 
-        
-        else if (strcmp(commande, "exit") == 0)//QUESTION 3
-	    {
+        // Remove the newline from the command 
+        commande[n - 1] = '\0';
+
+        // Exit command (question 3)
+        if (strcmp(commande, "exit") == 0) {
             write(STDOUT_FILENO, EXIT_MSG, strlen(EXIT_MSG));
             exit(EXIT_SUCCESS);
         }
-        else
-        {
-            write(STDOUT_FILENO, "Commande non reconnue\n", 22);
+
+        // Split the command into arguments
+        int i = 0;
+        args[i] = strtok(commande, " ");
+        while (args[i] != NULL) {
+            i++;
+            args[i] = strtok(NULL, " ");
+        }
+
+        // Son to execute the command
+        pid_t pid = fork();
+       
+        if (pid == 0) {
+            //  son
+            if (execvp(args[0], args) == -1) {//Execute the command
+                perror("Erreur Commande non trouvée");
+                exit(EXIT_FAILURE);
+            }
+        } else if (pid > 0) {
+            //  father
+            int status;
+            wait(&status);  
+
         }
     }
+    return 0;
 
-    exit(EXIT_SUCCESS);
 }

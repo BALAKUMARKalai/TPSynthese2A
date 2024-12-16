@@ -69,10 +69,7 @@ int main() {
                 // Le processus a été terminé par un signal
                 int signal = WTERMSIG(status);
                 snprintf(prompt, sizeof(prompt), "[sig:%d] %% ", signal);
-            } else {
-                // Autre cas improbable
-                snprintf(prompt, sizeof(prompt), "enseash %% ");
-            }
+
 
             // Afficher le nouveau prompt avec le statut du dernier processus
             write(STDOUT_FILENO, prompt, strlen(prompt));

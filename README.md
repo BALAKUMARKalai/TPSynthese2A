@@ -1,7 +1,7 @@
 <ins>**ENSEASH - A Mini Shell in C**</ins>
 
 
-Introduction
+<ins>**Introduction**</ins>
 
 ENSEASH is a mini shell written in C that allows users to execute simple commands with
 features such as:
@@ -17,9 +17,9 @@ shell.
 
 
 
-Features by Question
+<ins>**Features by Question**</ins>
 
-Question 1: Basic ENSEASH Shell
+<ins>Question 1: Basic ENSEASH Shell</ins>
 
    •   Displays a welcome message.
    •   Displays a custom prompt enseash %.
@@ -28,30 +28,30 @@ Question 1: Basic ENSEASH Shell
    •   Measures and displays the execution time of a command with an execution status
        (exit code or signal).
 
-Question 2: Predefined Commands
+<ins>Question 2: Predefined Commands</ins>
 
    •   Added the fortune command to display a random quote (uses /usr/games/fortune).
    •   Added the ls command to list directory contents.
    •   Unrecognized commands display an appropriate error message.
 
-Question 3: Managing exit
+<ins>Question 3: Managing exit</ins>
 
    •   The exit command displays a goodbye message Au revoir! before exiting the shell.
-Question 4: Executing Commands with Arguments
+<ins>Question 4: Executing Commands with Arguments</ins>
 
    •   Supports commands with arguments (e.g., ls -l or grep main file.txt).
    •   Handles errors when commands are not found.
 
-Question 5: Measuring Execution Time
+<ins>Question 5: Measuring Execution Time</ins>
 
    •   Precisely measures the execution time of commands using clock_gettime.
    •   Displays execution time in milliseconds along with the status (exit code or signal).
 
-Question 6 : Executing a complex command
+<ins>Question 6 : Executing a complex command</ins>
 
 
 
-Compilation and Execution Instructions
+<ins>**Compilation and Execution Instructions**</ins>
    1. Compile the program:
 
 gcc -o enseash enseash.c
@@ -76,7 +76,7 @@ Included Files
    4. enseash_q5.c: Implementation for Question 5 (precise execution time).
 Internal Functionality
 
-Core Structure
+<ins>**Core Structure**</ins>
 
    1. Reading Commands:
           a. Uses read to capture user input.
@@ -94,6 +94,6 @@ Core Structure
           a. Uses wait to retrieve the child process status.
           b. Displays either the return code or the signal that interrupted the command.
 
-Author
+<ins>**Author**</ins>
 This project was developed by BALAKUMAR Kalai and ANEMICHE Nassim.
 

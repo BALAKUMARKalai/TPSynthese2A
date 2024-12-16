@@ -54,6 +54,7 @@ shell.
    •   Displays execution time in milliseconds along with the status (exit code or signal).
 
 <ins>Question 6 : Executing a complex command</ins>  
+   Done with the question 5
 
 
 
@@ -101,6 +102,7 @@ Included Files
    5. Exit Status:
           a. Uses wait to retrieve the child process status.
           b. Displays either the return code or the signal that interrupted the command.
+      6. Receiving our own IP address
 
 <ins>**Author**</ins>
 This project was developed by BALAKUMAR Kalai and ANEMICHE Nassim.

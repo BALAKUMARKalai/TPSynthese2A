@@ -1,4 +1,4 @@
-<ins>**ENSEASH - A Mini Shell in C**</ins>
+<ins>**ENSEASH - A Mini Shell EnseaSH**</ins>
 
 
 <ins>**Introduction**</ins>

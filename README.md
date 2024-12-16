@@ -1,5 +1,8 @@
-ENSEASH - A Mini Shell in C
+<ins>**ENSEASH - A Mini Shell in C**</ins>
+
+
 Introduction
+
 ENSEASH is a mini shell written in C that allows users to execute simple commands with
 features such as:
 

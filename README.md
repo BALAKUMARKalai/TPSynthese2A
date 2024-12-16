@@ -24,18 +24,19 @@ shell.
 
 <ins>Question 1: Basic ENSEASH Shell</ins>  
 
-   •   Displays a welcome message.
-   •   Displays a custom prompt enseash %.
-   •   Reads and executes simple commands.
-   •   Supports the exit command to exit the shell.
+   •   Displays a welcome message.  
+   •   Displays a custom prompt enseash %.  
+   •   Reads and executes simple commands.  
+   •   Supports the exit command to exit the shell.  
    •   Measures and displays the execution time of a command with an execution status
-       (exit code or signal).
+       (exit code or signal).  
+           
 
 <ins>Question 2: Predefined Commands</ins>  
 
-   •   Added the fortune command to display a random quote (uses /usr/games/fortune).
-   •   Added the ls command to list directory contents.
-   •   Unrecognized commands display an appropriate error message.
+   •   Added the fortune command to display a random quote (uses /usr/games/fortune).  
+   •   Added the ls command to list directory contents.  
+   •   Unrecognized commands display an appropriate error message.  
 
 <ins>Question 3: Managing exit</ins>  
 

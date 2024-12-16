@@ -3,6 +3,7 @@
 
 <ins>**Introduction**</ins>
 
+
 ENSEASH is a mini shell written in C that allows users to execute simple commands with
 features such as:
 
@@ -18,6 +19,8 @@ shell.
 
 
 <ins>**Features by Question**</ins>
+
+
 
 <ins>Question 1: Basic ENSEASH Shell</ins>
 
@@ -37,7 +40,9 @@ shell.
 <ins>Question 3: Managing exit</ins>
 
    •   The exit command displays a goodbye message Au revoir! before exiting the shell.
-<ins>Question 4: Executing Commands with Arguments</ins>
+
+ 
+<ins>Question 4: Executing Commands with Arguments</ins>
 
    •   Supports commands with arguments (e.g., ls -l or grep main file.txt).
    •   Handles errors when commands are not found.

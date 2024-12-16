@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <time.h>  
 
 #define HELLO "Bienvenue dans le shell ENSEA .\n"
 #define ENSEASH "enseash % "
@@ -37,7 +38,7 @@ int main() {
             exit(EXIT_SUCCESS);
         }
 
-        // Découper la commande en arguments
+        // Découper la commande entrée en arguments
         int i = 0;
         args[i] = strtok(commande, " ");
         while (args[i] != NULL) {
@@ -45,11 +46,14 @@ int main() {
             args[i] = strtok(NULL, " ");
         }
 
-        // fils pour exécuter la commande
+        // Mesure du temps avant l'exécution
+        struct timespec start, end;
+        clock_gettime(CLOCK_MONOTONIC, &start);
+
+        // Fils pour exécuter la commande
         pid_t pid = fork();
-       
         if (pid == 0) {
-            //  fils
+            // fils
             if (execvp(args[0], args) == -1) {
                 perror("Erreur Commande non trouvée");
                 exit(EXIT_FAILURE);
@@ -59,19 +63,27 @@ int main() {
             int status;
             wait(&status);  
 
-            // Déterminer le code de retour 
+            // Mesure du temps après l'exécution
+            clock_gettime(CLOCK_MONOTONIC, &end);
+
+            
+            // Calcul du temps d'exécution en millisecondes
+            long seconds = end.tv_sec - start.tv_sec;
+            long milliseconds = (end.tv_nsec - start.tv_nsec) / 1000000; // Convertir les nanosecondes en millisecondes
+
+            // Déterminer le code de retour
             char prompt[256];
             if (WIFEXITED(status)) {
                 // Le processus s'est terminé normalement
                 int exit_code = WEXITSTATUS(status);
-                snprintf(prompt, sizeof(prompt), "[exit:%d] %% ", exit_code);
+                snprintf(prompt, sizeof(prompt), "[time: %ld.%09ld ms][exit:%d] %% ", seconds, milliseconds, exit_code);
             } else if (WIFSIGNALED(status)) {
                 // Le processus a été terminé par un signal
                 int signal = WTERMSIG(status);
-                snprintf(prompt, sizeof(prompt), "[sig:%d] %% ", signal);
+                snprintf(prompt, sizeof(prompt), "[time: %ld.%09ld ms][sig:%d] %% ", seconds, milliseconds, signal);
             } 
 
-            
+            // Afficher le nouveau prompt 
             write(STDOUT_FILENO, prompt, strlen(prompt));
         } 
     }
